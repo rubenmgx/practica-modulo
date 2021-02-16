@@ -6,7 +6,7 @@ Problemas con instalacion? -> https://es.stackoverflow.com/questions/321791/no-p
 
 Revisar: https://github.com/alexferl/flask-mysqldb
 
-
+#
 # Dockerfile
 #   Crear Dockerfile que compile los requisitos a instalar
 #   Dependencias
