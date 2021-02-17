@@ -1,18 +1,10 @@
 import time
-
 import redis
 from flask import Flask
-
 import json_logging, logging, sys
-
 from prometheus_client import start_http_server, Counter
-
-
 import os
 
-# Set environment variables
-REDIS_HOST = os.environ['REDIS_HOST']
-REDIS_PASSWORD = os.environ['REDIS_PASSWORD']
 
 app = Flask(__name__)
 
@@ -23,7 +15,7 @@ logger = logging.getLogger("flask-counter")
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
-cache = redis.Redis(host=REDIS_HOST, port=6379, password=REDIS_PASSWORD)
+cache = redis.Redis(host='redis', port=6379)
 
 start_http_server(8000)
 
