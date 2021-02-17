@@ -1,2 +1,4 @@
 flask
 redis
+json-logging
+prometheus-client
