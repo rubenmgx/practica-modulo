@@ -15,12 +15,10 @@ logger = logging.getLogger("flask-counter")
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
-cache = redis.Redis(host='redis', port=6379)
-
 start_http_server(8000)
 
 c = Counter("redis_calls", "Number of calls to redis", ["status"])
-
+cache = redis.Redis(host='redis', port=6379)
 
 def get_hit_count():
     retries = 5
@@ -40,7 +38,7 @@ def get_hit_count():
 @app.route('/')
 def hello():
     count = get_hit_count()
-    message = 'Hello Keepcoding! I have been seen {} times.\n'.format(count)
+    message = 'Con que me apruebes una vez me basta, pero si quieres me puedes aprobar todas estas veces también: {} .\n'.format(count)
     with open("log.txt","a+") as fo:
         fo.write(message)
     
