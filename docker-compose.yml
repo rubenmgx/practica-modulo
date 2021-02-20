@@ -8,8 +8,8 @@ services:
       - .:/practica/web
     environment:
       FLASK_ENV: "${FLASK_ENV}"
-      REDIS_PASSWORD: password #"${REDIS_PASSWORD}"
-      REDIS_HOST: redis #"${REDIS_HOST}"
+      REDIS_PASSWORD: "${REDIS_PASSWORD}"
+      REDIS_HOST: "${REDIS_HOST}"
     depends_on:
       - redis
   redis:
@@ -17,8 +17,8 @@ services:
     container_name: redis
     command: ["--requirepass", "password"]
     environment:
-      REDIS_PASSWORD: password #"${REDIS_PASSWORD}"
-      REDIS_HOST: redis #"${REDIS_HOST}"
+      REDIS_PASSWORD: "${REDIS_PASSWORD}"
+      REDIS_HOST: "${REDIS_HOST}"
     volumes:
       - .:/practica/db
     
