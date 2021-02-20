@@ -1,10 +1,13 @@
+from prometheus_client import start_http_server, Counter
 import time
 import redis
 from flask import Flask
 import json_logging, logging, sys
-from prometheus_client import start_http_server, Counter
 import os
 
+# Set environment variables
+REDIS_HOST = os.environ['REDIS_HOST']
+REDIS_PASSWORD = os.environ['REDIS_PASSWORD']
 
 app = Flask(__name__)
 
@@ -15,10 +18,9 @@ logger = logging.getLogger("flask-counter")
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
-start_http_server(8000)
-
+cache = redis.Redis(host=REDIS_HOST, port=6379, password=REDIS_PASSWORD)
 c = Counter("redis_calls", "Number of calls to redis", ["status"])
-cache = redis.Redis(host='redis', port=6379)
+
 
 def get_hit_count():
     retries = 5
@@ -38,16 +40,8 @@ def get_hit_count():
 @app.route('/')
 def hello():
     count = get_hit_count()
-    message = 'Con que me apruebes una vez me basta, pero si quieres me puedes aprobar todas estas veces también: {} .\n'.format(count)
+    message = 'Hello Keepcoding! I have been seen {} times.\n'.format(count)
     with open("log.txt","a+") as fo:
         fo.write(message)
     
     return message
-
-@app.route('/health/live')
-def health_live():
-    return "Ok"
-
-@app.route('/health/ready')
-def health_ready():
-    return "Ok"

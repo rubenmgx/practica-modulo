@@ -3,16 +3,24 @@ services:
   web:
     build: .
     ports:
-      - "5050:5000"
+      - "${PORT_FORWARDER}:${REDIS_PORT}"
     volumes:
-      - .:/code/web
+      - .:/practica/web
+    environment:
+      FLASK_ENV: "${FLASK_ENV}"
+      REDIS_PASSWORD: password #"${REDIS_PASSWORD}"
+      REDIS_HOST: redis #"${REDIS_HOST}"
     depends_on:
       - redis
   redis:
-    image: "redis:alpine"
+    image: "${IMAGE_REDIS}"
+    container_name: redis
+    command: ["--requirepass", "password"]
+    environment:
+      REDIS_PASSWORD: password #"${REDIS_PASSWORD}"
+      REDIS_HOST: redis #"${REDIS_HOST}"
     volumes:
-      - .:/code/db
-    env_file:
-      - ./practica.env
+      - .:/practica/db
+    
     
     
