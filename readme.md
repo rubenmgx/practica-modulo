@@ -8,3 +8,6 @@ docker-compose down
 
 kubectl apply -f k8s
 kubectl -n flask apply -f k8s (añadiendo el namespace con comando)
+imagen GCP: eu.gcr.io/hopeful-folder-272211/practica/flask-k8s
+kubectl -n flask get svc
+hostname: rubenmgx-5.59.117.26.nip.io
