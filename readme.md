@@ -82,5 +82,5 @@ Para correr la app, pondremos el siguiente comando:
 kubectl apply -f <origen de los archivos>
 ```
 # Acceso GCP
-- **Project ID**: <hopeful-folder-272211> 
+- **Project ID**: hopeful-folder-272211
 - **Email**: <ruben.mgx@gmail.com>
