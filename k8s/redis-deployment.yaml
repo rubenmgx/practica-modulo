@@ -15,6 +15,16 @@ spec:
       labels:
         app: redis
     spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: run
+                operator: In
+                values:
+                - together
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - image: redis
         name: redis

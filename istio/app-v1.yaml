@@ -1,28 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask
-  namespace: practica
+  labels:
+    version: v1
+  name: flask-v1
+  namespace: istio
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: flask
   template:
     metadata:
       labels:
+        version: v1
         app: flask
-    spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-                - key: deploy
-                  operator: In
-                  values:
-                  - separate
-            topologyKey: kubernetes.io/hostname  
+    spec:  
       containers:
         - image: eu.gcr.io/hopeful-folder-272211/practica/flask-k8s
           name: flask

@@ -1,0 +1,18 @@
+replicas: 2
+image: 
+  name: eu.gcr.io/hopeful-folder-272211/practica/flask-k8s
+
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi
+    cpu: 200m
+
+ingress:
+  host: rubenmgx.34.77.250.116.nip.io 
+
+redis:
+  cluster:
+    enabled: false
