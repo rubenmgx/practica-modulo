@@ -1,6 +1,7 @@
 version: "3.7"
 services:
   web:
+    image: "${IMAGE_FLASK}"
     build: .
     ports:
       - "${PORT_FORWARDER}:${REDIS_PORT}"
