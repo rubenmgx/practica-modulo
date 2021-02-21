@@ -11,8 +11,11 @@ resources:
     cpu: 200m
 
 ingress:
-  host: rubenmgx.34.77.250.116.nip.io 
+  host: mgxruben.34.77.250.116.nip.io
+  enabled: true 
 
 redis:
   cluster:
     enabled: false
+
+  
