@@ -13,16 +13,6 @@ spec:
       labels:
         app: flask
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-                - key: deploy
-                  operator: In
-                  values:
-                  - separate
-            topologyKey: kubernetes.io/hostname  
       containers:
         - image: eu.gcr.io/hopeful-folder-272211/practica/flask-k8s
           name: flask
